@@ -7,21 +7,19 @@ def get_age_input(fail_message: str):
 
 def get_citizen_status(fail_message: str):
     citizen_status = input("Являетесь ли вы гражданином страны (Да/Нет): ").lower()
-    if citizen_status == "да":
-        return True
-    elif citizen_status == "нет":
-        return False
-    print(fail_message)
-    return None
+    if citizen_status in ["да", "нет"]:
+        return citizen_status
+    else:
+        print(fail_message)
+        return None
 
 def get_disqualified_status(fail_message: str):
     disqualified_status = input("Были ли вы дисквалифицированы (Да/Нет): ").lower()
-    if disqualified_status == "да":
-        return True
-    elif disqualified_status == "нет":
-        return False
-    print(fail_message)
-    return None
+    if disqualified_status in ["да", "нет"]:
+        return disqualified_status
+    else:
+        print(fail_message)
+        return None
 
 def check_vote_status(fail_message: str):
     age = get_age_input(fail_message)
@@ -36,7 +34,7 @@ def check_vote_status(fail_message: str):
     if is_disqualified is None:
         return
 
-    if age >= 18 and is_citizen and not is_disqualified:
+    if age >= 18 and is_citizen == "да" and is_disqualified == "нет":
         print("Разрешено участвовать в голосовании.")
     else:
         print("Запрещено участие в голосовании.")
